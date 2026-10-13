@@ -1,1 +1,4 @@
-
+.DS_Store
+.idea/
+*.iml
+coremio/modules/Registrars/DomainNameAPI/config.php
