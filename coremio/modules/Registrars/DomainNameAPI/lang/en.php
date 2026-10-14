@@ -4,8 +4,8 @@ return [
     'name'        => 'DomainNameAPI',
     'description' => 'With Domainnameapi.com, one of the popular domain name registrars, all domain name transactions can be made instantaneously through the domain API. To do this, define your domainnameapi.com client account information in the following fields.',
     'fields'      => [
-        'username'      => 'Reseller ID / API Username',
-        'password'      => 'API Key / API Password',
+        'username'      => 'Reseller ID',
+        'password'      => 'API Key',
         'test-mode'     => 'Test Mode',
         'adp'           => 'Update pricing automatically',
         'cost-currency' => 'Cost Currency',
@@ -13,8 +13,8 @@ return [
         'balance'       => 'Balance',
     ],
     'desc'        => [
-        'username'      => 'Your Reseller ID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) from API Settings in the DomainNameAPI panel connects over REST; a legacy API username connects over SOAP. Your panel login e-mail does not work here.',
-        'password'      => 'The API Key of the Reseller ID, or the password of the legacy API username. Leave the mask untouched to keep the saved value.',
+        'username'      => 'Your Reseller ID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) from API Settings in the DomainNameAPI panel. Your panel login e-mail does not work here.',
+        'password'      => 'The API Key of the Reseller ID. Leave the mask untouched to keep the saved value.',
         'test-mode'     => 'Activate to process in test mode',
         'adp'           => 'Automatically pulls pricing daily and the price is set at the profit rate',
         'cost-currency' => 'Currency for extension costs the API returns without one.',

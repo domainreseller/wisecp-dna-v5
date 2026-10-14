@@ -4,8 +4,8 @@ return [
     'name'        => 'DomainNameAPI',
     'description' => 'Mit Domainnameapi.com, einem der beliebtesten Domainnamen-Registrare, können alle Domainnamen-Transaktionen sofort über die Domain-API durchgeführt werden. Definieren Sie dazu in den folgenden Feldern Ihre Domainnameapi.com-Kundenkontoinformationen.',
     'fields'      => [
-        'username'      => 'Reseller-ID / API-Benutzername',
-        'password'      => 'API-Schlüssel / API-Passwort',
+        'username'      => 'Reseller-ID',
+        'password'      => 'API-Schlüssel',
         'test-mode'     => 'Testmodus',
         'adp'           => 'Preise automatisch aktualisieren',
         'cost-currency' => 'Kostenwährung',
@@ -13,8 +13,8 @@ return [
         'balance'       => 'Saldo',
     ],
     'desc'        => [
-        'username'      => 'Ihre Reseller-ID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) aus den API-Einstellungen im DomainNameAPI-Panel verbindet über REST, ein älterer API-Benutzername über SOAP. Ihre Panel-Login-E-Mail funktioniert hier nicht.',
-        'password'      => 'Der API-Schlüssel der Reseller-ID oder das Passwort des älteren API-Benutzernamens. Lassen Sie die Maske unverändert, um den gespeicherten Wert zu behalten.',
+        'username'      => 'Ihre Reseller-ID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) aus den API-Einstellungen im DomainNameAPI-Panel. Ihre Panel-Login-E-Mail funktioniert hier nicht.',
+        'password'      => 'Der API-Schlüssel der Reseller-ID. Lassen Sie die Maske unverändert, um den gespeicherten Wert zu behalten.',
         'test-mode'     => 'Aktivieren Sie diese Option, um sie im Testmodus zu verarbeiten',
         'adp'           => 'Täglich wird automatisch die Preisgestaltung abgerufen und der Preis wird auf die Gewinnrate festgelegt',
         'cost-currency' => 'Währung für Endungskosten, die die API ohne Währung liefert.',

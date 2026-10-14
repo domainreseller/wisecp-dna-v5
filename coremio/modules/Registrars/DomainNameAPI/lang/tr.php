@@ -4,8 +4,8 @@ return [
     'name'        => 'DomainNameAPI',
     'description' => 'Popüler alan adı tescil firmalarından biri olan domainnameapi.com ile domain api üzerinden tüm alan adı işlemlerini anlık olarak sağlayabilirsiniz. Bunun için domainnameapi.com müşteri hesabı bilgilerinizi aşağıdaki alanlara tanımlayınız.',
     'fields'      => [
-        'username'      => 'Bayi ID / API Kullanıcı Adı',
-        'password'      => 'API Anahtarı / API Şifresi',
+        'username'      => 'Bayi ID (Reseller ID)',
+        'password'      => 'API Anahtarı',
         'test-mode'     => 'Test Modu',
         'adp'           => 'Maliyetleri Oto Güncelle',
         'cost-currency' => 'Maliyet Para Birimi',
@@ -13,8 +13,8 @@ return [
         'balance'       => 'Bakiye',
     ],
     'desc'        => [
-        'username'      => 'DomainNameAPI panelindeki API Ayarları bölümünde bulunan Bayi ID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) REST ile, eski tip API kullanıcı adı SOAP ile bağlanır. Panel giriş e-postanız burada çalışmaz.',
-        'password'      => 'Bayi ID\'ye ait API Anahtarı ya da eski tip API kullanıcı adının şifresi. Kayıtlı değeri korumak için maskeye dokunmayın.',
+        'username'      => 'DomainNameAPI panelindeki API Ayarları bölümünde bulunan Bayi ID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx). Panel giriş e-postanız burada çalışmaz.',
+        'password'      => 'Bayi ID\'ye ait API Anahtarı. Kayıtlı değeri korumak için maskeye dokunmayın.',
         'test-mode'     => 'Test modunda işlem yapmak için aktif ediniz.',
         'adp'           => 'Maliyetleri her gün otomatik olarak çeker ve belirlediğiniz kâr oranında satış fiyatlarını tanımlar.',
         'cost-currency' => 'API\'nin para birimi göndermediği uzantı maliyetleri için kullanılacak para birimi.',

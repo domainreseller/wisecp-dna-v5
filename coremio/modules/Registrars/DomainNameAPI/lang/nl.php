@@ -4,8 +4,8 @@ return [
     'name'        => 'DomainNameAPI',
     'description' => 'Met domainnameapi.com, een van de populaire domeinnaamregistrars, kunnen alle domeinnaamtransacties onmiddellijk worden uitgevoerd via de domein-API. Definieer hiervoor uw domainnameapi.com-clientaccountinformatie in de volgende velden.',
     'fields'      => [
-        'username'      => 'Reseller-ID / API-gebruikersnaam',
-        'password'      => 'API-sleutel / API-wachtwoord',
+        'username'      => 'Reseller-ID',
+        'password'      => 'API-sleutel',
         'test-mode'     => 'Testmodus',
         'adp'           => 'Prijzen automatisch bijwerken',
         'cost-currency' => 'Kostenvaluta',
@@ -13,8 +13,8 @@ return [
         'balance'       => 'Saldo',
     ],
     'desc'        => [
-        'username'      => 'Uw Reseller-ID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) uit de API-instellingen in het DomainNameAPI-panel verbindt via REST, een oude API-gebruikersnaam via SOAP. Uw inlog-e-mail van het panel werkt hier niet.',
-        'password'      => 'De API-sleutel van de Reseller-ID, of het wachtwoord van de oude API-gebruikersnaam. Laat het masker ongewijzigd om de opgeslagen waarde te behouden.',
+        'username'      => 'Uw Reseller-ID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) uit de API-instellingen in het DomainNameAPI-panel. Uw inlog-e-mail van het panel werkt hier niet.',
+        'password'      => 'De API-sleutel van de Reseller-ID. Laat het masker ongewijzigd om de opgeslagen waarde te behouden.',
         'test-mode'     => 'Activeren om te verwerken in de testmodus',
         'adp'           => 'Haalt de prijzen dagelijks automatisch op, en de prijs wordt vastgesteld tegen het winstpercentage',
         'cost-currency' => 'Valuta voor extensiekosten die de API zonder valuta teruggeeft.',

@@ -112,7 +112,7 @@ class DomainNameAPI extends \RegistrarModule
     }
 
     /**
-     * Settings form. The saved password is encrypted, so the form only ever shows a mask.
+     * Settings form. The saved API key is encrypted, so the form only ever shows a mask.
      */
     public function config_fields($data = []): array
     {
@@ -122,13 +122,13 @@ class DomainNameAPI extends \RegistrarModule
         // auto-pricing (adp) only when the module has cost_prices(), so that one is ours.
         return [
             'username'      => [
-                'name'        => $this->lang['fields']['username'] ?? 'Reseller ID / API Username',
+                'name'        => $this->lang['fields']['username'] ?? 'Reseller ID',
                 'description' => $this->lang['desc']['username'] ?? '',
                 'type'        => 'text',
                 'value'       => (string) ($data['username'] ?? ''),
             ],
             'password'      => [
-                'name'        => $this->lang['fields']['password'] ?? 'API Key / API Password',
+                'name'        => $this->lang['fields']['password'] ?? 'API Key',
                 'description' => $this->lang['desc']['password'] ?? '',
                 'type'        => 'password',
                 'value'       => !empty($data['password']) ? self::SECRET_MASK : '',
@@ -161,8 +161,8 @@ class DomainNameAPI extends \RegistrarModule
     }
 
     /**
-     * Save the settings form. Overridden so the password is stored encrypted and an untouched
-     * password field (blank or the mask) keeps the stored secret instead of overwriting it.
+     * Save the settings form. Overridden so the API key is stored encrypted and an untouched
+     * API key field (blank or the mask) keeps the stored secret instead of overwriting it.
      */
     public function controller_settings($extraFields = []): array
     {
@@ -227,7 +227,7 @@ class DomainNameAPI extends \RegistrarModule
         $username = trim((string) ($settings['username'] ?? ''));
         $password = trim((string) ($settings['password'] ?? ''));
 
-        // An untouched password field posts back the mask (or the stored ciphertext): test
+        // An untouched API key field posts back the mask (or the stored ciphertext): test
         // with the stored secret then.
         if ($password === '' || str_starts_with($password, '*') || $password === $stored) {
             $password = $stored !== '' ? $this->decode_str($stored) : '';
@@ -293,7 +293,6 @@ class DomainNameAPI extends \RegistrarModule
 
             $result[$tld]['status'] = ($row['Status'] ?? '') === 'available' ? 'available' : 'unavailable';
 
-            // SOAP may deliver IsFee as the strings "true"/"false" instead of booleans.
             if ($this->dnaFlag($row['IsFee'] ?? false)) {
                 $result[$tld]['premium']       = true;
                 $result[$tld]['premium_price'] = [
@@ -1009,9 +1008,9 @@ class DomainNameAPI extends \RegistrarModule
     }
 
     /**
-     * Build the library client. A failure (e.g. the SOAP WSDL cannot be loaded) is rethrown
-     * without the original exception: that one's trace carries the constructor arguments, the
-     * password among them, into whatever logs the error.
+     * Build the library client. A failure is rethrown without the original exception: that
+     * one's trace carries the constructor arguments, the API key among them, into whatever logs
+     * the error.
      */
     private function dnaConnect(
         string $username,

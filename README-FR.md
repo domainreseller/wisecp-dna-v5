@@ -24,7 +24,6 @@ Ce module est une intégration de 'domainnameapi.com' pour WiseCP.
 
 - WiseCP 5.
 - PHP 8.2 ou supérieur.
-- L'extension PHP Soap, si vous vous connectez avec d'anciens identifiants API (SOAP).
 
 ## Installation
 
@@ -42,24 +41,13 @@ Copiez le dossier "coremio" du nouveau paquet dans le dossier d'installation de 
 L'assistant de migration de WiseCP ne transfère pas les réglages de ce module vers la version 5. Après la migration, installez ce paquet et saisissez à nouveau vos identifiants API dans **Produits → Domaines → Registraires de domaines**.
 
 
-### Informations de l'utilisateur revendeur
+### Identifiants API
 
-1. Entrez le nom d'utilisateur et le mot de passe du revendeur.
+1. Saisissez votre **Reseller ID** et votre **API Key**.
 2. Cliquez sur le bouton "Enregistrer".
 
-## 🔑 Identifiants API — Nom d'utilisateur/Mot de passe ou Reseller ID/API Key ?
-
-Les deux sont pris en charge — saisissez-les dans les deux mêmes champs du module ; le module détecte automatiquement quelle API utiliser :
-
-| Vous disposez de | Champ « Nom d'utilisateur » | Champ « Mot de passe » | API utilisée |
-|---|---|---|---|
-| **Nouveaux identifiants du panneau** (recommandé) | Reseller ID — UUID de la forme `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` | API Key | REST |
-| **Identifiants hérités (legacy)** | Nom d'utilisateur API | Mot de passe API | SOAP |
-
 > 💡 Vous trouverez votre **Reseller ID** et votre **API Key** dans votre panneau DomainNameAPI, section **Paramètres API**.
-> ⚠️ Ce sont des **identifiants API** — l'e-mail et le mot de passe de connexion à votre panneau ne fonctionneront **pas** ici.
-
-Aucune configuration supplémentaire n'est nécessaire — si le champ nom d'utilisateur contient un UUID, le module utilise l'API REST moderne, sinon le SOAP classique.
+> ⚠️ Ce sont des **identifiants API** — vos identifiants de connexion au panneau ne fonctionneront **pas** ici.
 
 ### Test de la connexion
 

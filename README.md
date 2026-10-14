@@ -24,7 +24,6 @@ Bu modül, WiseCP için geliştirilmiş bir 'domainnameapi.com' entegrasyonudur.
 
 - WiseCP 5.
 - PHP 8.2 ve üzeri.
-- Eski tip (SOAP) API bilgileriyle bağlanacaksanız PHP Soap eklentisi etkin olmalıdır.
 
 ## Kurulum
 
@@ -42,24 +41,13 @@ Yeni paketteki "coremio" klasörünü WISECP kurulu olduğu klasörün içine at
 WiseCP'nin geçiş sihirbazı bu modülün ayarlarını 5'e taşımaz. Geçişten sonra bu paketi yükleyin ve API bilgilerinizi **Ürünler → Alan Adları → Servis Sağlayıcılar** ekranında yeniden girin.
 
 
-### Bayi Kullanıcı Bilgileri
+### API Bilgileri
 
-1. Bayi kullanıcı adını ve şifresini girin.
+1. **Bayi ID (Reseller ID)** ve **API Anahtarı (API Key)** bilgilerinizi girin.
 2. "Kaydet" düğmesine tıklayın.
 
-## 🔑 API Bilgileri — Kullanıcı Adı/Şifre mi, Reseller ID/API Key mi?
-
-Her ikisi de desteklenir — bilgileri modüldeki aynı iki alana girin; modül hangi API'nin kullanılacağını otomatik olarak algılar:
-
-| Elinizdeki bilgi | "Kullanıcı Adı" alanı | "Şifre" alanı | Kullanılan API |
-|---|---|---|---|
-| **Yeni panel bilgileri** (önerilen) | Reseller ID — `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` formatında UUID | API Key | REST |
-| **Eski (legacy) bilgiler** | API kullanıcı adı | API şifresi | SOAP |
-
 > 💡 **Reseller ID** ve **API Key** bilgilerinizi DomainNameAPI panelinizde **API Ayarları** bölümünde bulabilirsiniz.
-> ⚠️ Bunlar **API bilgileridir** — panele giriş yaptığınız e-posta/şifre burada **ÇALIŞMAZ**; API Ayarları bölümündeki Reseller ID (UUID) ve API Key kullanılmalıdır.
-
-Ekstra bir yapılandırma gerekmez — kullanıcı adı alanında bir UUID varsa modül modern REST API'yi, aksi halde klasik SOAP'ı kullanır.
+> ⚠️ Bunlar **API bilgileridir** — panele giriş bilgileriniz (e-posta vb.) burada **ÇALIŞMAZ**.
 
 ### Bağlantıyı Test Etme
 

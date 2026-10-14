@@ -4,8 +4,8 @@ return [
     'name'        => 'DomainNameAPI',
     'description' => "Avec Domainnameapi.com, l'un des registraires de noms de domaine populaires, toutes les transactions de noms de domaine peuvent être effectuées instantanément via l'API de domaine. Pour ce faire, définissez les informations de votre compte client domainnameapi.com dans les champs suivants.",
     'fields'      => [
-        'username'      => "ID revendeur / Nom d'utilisateur API",
-        'password'      => 'Clé API / Mot de passe API',
+        'username'      => 'ID revendeur (Reseller ID)',
+        'password'      => 'Clé API',
         'test-mode'     => 'Mode test',
         'adp'           => 'Mettre à jour les prix automatiquement',
         'cost-currency' => 'Devise des coûts',
@@ -13,8 +13,8 @@ return [
         'balance'       => 'Solde',
     ],
     'desc'        => [
-        'username'      => "Votre ID revendeur (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx), dans les paramètres API du panneau DomainNameAPI, se connecte via REST ; un ancien nom d'utilisateur API se connecte via SOAP. L'e-mail de connexion au panneau ne fonctionne pas ici.",
-        'password'      => "La clé API de l'ID revendeur, ou le mot de passe de l'ancien nom d'utilisateur API. Laissez le masque inchangé pour conserver la valeur enregistrée.",
+        'username'      => "Votre ID revendeur (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx), dans les paramètres API du panneau DomainNameAPI. L'e-mail de connexion au panneau ne fonctionne pas ici.",
+        'password'      => "La clé API de l'ID revendeur. Laissez le masque inchangé pour conserver la valeur enregistrée.",
         'test-mode'     => 'Activez pour traiter en mode test',
         'adp'           => 'Récupère automatiquement les prix quotidiennement et le prix est fixé au taux de profit',
         'cost-currency' => "Devise des coûts d'extension que l'API renvoie sans devise.",

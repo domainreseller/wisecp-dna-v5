@@ -24,7 +24,6 @@ Bu modul, WiseCP üçün 'domainnameapi.com' inteqrasiyasıdır.
 
 - WiseCP 5.
 - PHP 8.2 və ya daha yüksək.
-- Köhnə tip (SOAP) API məlumatları ilə qoşulursunuzsa, PHP Soap genişlənməsi aktiv olmalıdır.
 
 ## Quraşdırma
 
@@ -42,24 +41,13 @@ Yeni paketdəki "coremio" qovluğunu WiseCP-nin quraşdırıldığı qovluğa at
 WiseCP-nin keçid sihirbazı bu modulun parametrlərini 5-ə köçürmür. Keçiddən sonra bu paketi yükləyin və API məlumatlarınızı **Məhsullar → Domenlər → Domen Qeydiyyatçıları** ekranında yenidən daxil edin.
 
 
-### Bayi İstifadəçi Məlumatları
+### API Məlumatları
 
-1. Bayi istifadəçi adını və şifrəsini daxil edin.
+1. **Reseller ID** və **API Key** məlumatlarınızı daxil edin.
 2. "Yadda Saxla" düyməsinə klikləyin.
 
-## 🔑 API Məlumatları — İstifadəçi adı/Şifrə, yoxsa Reseller ID/API Key?
-
-Hər ikisi dəstəklənir — məlumatları modulda eyni iki sahəyə daxil edin; modul hansı API-nin istifadə olunacağını avtomatik müəyyən edir:
-
-| Sizdə olan | "İstifadəçi adı" sahəsi | "Şifrə" sahəsi | İstifadə olunan API |
-|---|---|---|---|
-| **Yeni panel məlumatları** (tövsiyə olunur) | Reseller ID — `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` formatında UUID | API Key | REST |
-| **Köhnə (legacy) məlumatlar** | API istifadəçi adı | API şifrəsi | SOAP |
-
 > 💡 **Reseller ID** və **API Key** məlumatlarınızı DomainNameAPI panelinizdə **API Parametrləri** bölməsində tapa bilərsiniz.
-> ⚠️ Bunlar **API məlumatlarıdır** — panelə giriş üçün istifadə etdiyiniz e-poçt və şifrə burada **işləməyəcək**.
-
-Əlavə konfiqurasiya tələb olunmur — istifadəçi adı sahəsində UUID varsa, modul müasir REST API-dən, əks halda klassik SOAP-dan istifadə edir.
+> ⚠️ Bunlar **API məlumatlarıdır** — panelə giriş məlumatlarınız burada **işləməyəcək**.
 
 ### Bağlantını Test Et
 
