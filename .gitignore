@@ -1,4 +1,9 @@
-.DS_Store
-.idea/
+.idea/*
+.classpath
+.settings
+.target
+.cursorrules
+.project
 *.iml
+.testoutput
 coremio/modules/Registrars/DomainNameAPI/config.php
