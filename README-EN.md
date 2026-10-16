@@ -53,6 +53,28 @@ WiseCP's migration wizard does not carry this module's settings over to 5. After
 
 1. Click the "Test Connection" button to check if the connection is successfully established.
 
+## Notes
+
+- Registration and contact updates stop with a clear message when a required contact field (first name, e-mail, address, city, country, postcode, phone) is missing. For .tr domains, the owner's T.C. ID number (individuals) or tax office and tax number (companies) must be in the customer profile.
+
+## Error reporting (telemetry)
+
+When an API call fails, the module sends an error report to DomainNameAPI's own error tracker (Sentry, at `sentry.atakdomain.com`). A small random share of successful calls (4%, plus every call slower than 1 second) is sent as a performance record. This helps DomainNameAPI find and fix problems. Error reporting is **on by default**.
+
+**What is sent:**
+
+- error code and message (e-mail addresses and long numbers are masked)
+- called endpoint path and HTTP method
+- call duration
+- module name, library version and PHP version
+- reseller ID and domain name
+- the server's public IP address (looked up via `api.ipify.org`)
+- an anonymous one-way hash of the hosting account name
+
+**What is never sent:** request or response bodies, EPP/auth codes, contact details (names, e-mail, phone, address), the panel URL or admin directory, the hosting account name itself, API keys.
+
+**How to turn it off:** switch off the **Error Reporting** setting on the DomainNameAPI settings screen (**Products → Domains → Service Providers**) and save. It is on by default.
+
 ## Importing Domain TLDs
 
 1. Click on the "Import TLDs" tab to import the domain name extensions.

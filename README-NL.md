@@ -53,6 +53,28 @@ De migratiewizard van WiseCP neemt de instellingen van deze module niet mee naar
 
 1. Klik op de knop "Verbinding testen" om te controleren of de verbinding succesvol tot stand is gebracht.
 
+## Opmerkingen
+
+- Registraties en contactupdates stoppen met een duidelijke melding wanneer een verplicht contactveld (voornaam, e-mail, adres, plaats, land, postcode, telefoon) ontbreekt. Voor .tr-domeinen moet het T.C.-identiteitsnummer van de eigenaar (particulieren) of het belastingkantoor en belastingnummer (bedrijven) in het klantprofiel staan.
+
+## Foutrapportage (telemetrie)
+
+Wanneer een API-aanroep mislukt, stuurt de module een foutrapport naar de eigen fouttracker van DomainNameAPI (Sentry, op `sentry.atakdomain.com`). Een klein, willekeurig deel van de geslaagde aanroepen (4%, plus elke aanroep die langer dan 1 seconde duurt) wordt als prestatiegegeven verstuurd. Dit helpt DomainNameAPI problemen te vinden en op te lossen. Foutrapportage staat **standaard aan**.
+
+**Wat wordt verstuurd:**
+
+- foutcode en -melding (e-mailadressen en lange getallen worden gemaskeerd)
+- pad van het aangeroepen endpoint en HTTP-methode
+- duur van de aanroep
+- modulenaam, bibliotheekversie en PHP-versie
+- reseller-ID en domeinnaam
+- het publieke IP-adres van de server (opgevraagd via `api.ipify.org`)
+- een anonieme eenrichtings-hash van de naam van het hostingaccount
+
+**Wat nooit wordt verstuurd:** inhoud van verzoeken of antwoorden, EPP-/auth-codes, contactgegevens (namen, e-mail, telefoon, adres), de panel-URL of admin-map, de naam van het hostingaccount zelf, API-keys.
+
+**Uitschakelen:** zet de instelling **Foutrapportage** uit op het DomainNameAPI-instellingenscherm (**Products → Domains → Service Providers**) en sla op. Standaard staat deze aan.
+
 ## Importeren van domein TLD's
 
 1. Klik op het tabblad "TLD's importeren" om de domeinnaamextensies te importeren.

@@ -53,6 +53,28 @@ L'assistant de migration de WiseCP ne transfère pas les réglages de ce module 
 
 1. Cliquez sur le bouton "Tester la connexion" pour vérifier si la connexion a été établie avec succès.
 
+## Remarques
+
+- Les enregistrements et les mises à jour de contacts s'arrêtent avec un message clair lorsqu'un champ de contact obligatoire (prénom, e-mail, adresse, ville, pays, code postal, téléphone) est manquant. Pour les domaines .tr, le numéro d'identité T.C. du titulaire (particuliers) ou le centre des impôts et le numéro fiscal (entreprises) doivent figurer dans le profil client.
+
+## Rapports d'erreurs (télémétrie)
+
+Lorsqu'un appel API échoue, le module envoie un rapport d'erreur au système de suivi des erreurs de DomainNameAPI (Sentry, à l'adresse `sentry.atakdomain.com`). Une petite part aléatoire des appels réussis (4 %, plus chaque appel de plus d'une seconde) est envoyée comme enregistrement de performance. Cela aide DomainNameAPI à trouver et corriger les problèmes. Les rapports d'erreurs sont **activés par défaut**.
+
+**Ce qui est envoyé :**
+
+- le code et le message d'erreur (les adresses e-mail et les longs nombres sont masqués)
+- le chemin du point de terminaison appelé et la méthode HTTP
+- la durée de l'appel
+- le nom du module, la version de la bibliothèque et la version de PHP
+- l'ID revendeur et le nom de domaine
+- l'adresse IP publique du serveur (obtenue via `api.ipify.org`)
+- un hachage anonyme et irréversible du nom du compte d'hébergement
+
+**Ce qui n'est jamais envoyé :** le contenu des requêtes ou des réponses, les codes EPP/auth, les coordonnées (noms, e-mail, téléphone, adresse), l'URL du panneau ou le répertoire d'administration, le nom du compte d'hébergement lui-même, les clés API.
+
+**Comment le désactiver :** désactivez le paramètre **Rapports d'erreurs** sur l'écran des paramètres DomainNameAPI (**Products → Domains → Service Providers**) puis enregistrez. Il est activé par défaut.
+
 ## Importation des TLD de domaine
 
 1. Cliquez sur l'onglet "Importer les TLD" pour importer les extensions de noms de domaine.

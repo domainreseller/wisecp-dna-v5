@@ -53,6 +53,28 @@ WiseCP-nin keçid sihirbazı bu modulun parametrlərini 5-ə köçürmür. Keçi
 
 1. Bağlantını sorunsuz şəkildə qurulub-qurulmadığını yoxlamaq üçün "Bağlantını Test Et" düyməsinə klikləyin.
 
+## Qeydlər
+
+- Məcburi əlaqə sahəsi (ad, e-poçt, ünvan, şəhər, ölkə, poçt indeksi, telefon) boş olduqda qeydiyyat və əlaqə məlumatlarının yenilənməsi aydın bir mesajla dayanır. .tr domenləri üçün sahibin T.C. şəxsiyyət nömrəsi (fiziki şəxslər) və ya vergi idarəsi və vergi nömrəsi (şirkətlər) müştəri profilində olmalıdır.
+
+## Xəta hesabatları (telemetriya)
+
+API çağırışı uğursuz olduqda modul DomainNameAPI-nin öz xəta izləmə sisteminə (Sentry, `sentry.atakdomain.com`) xəta hesabatı göndərir. Uğurlu çağırışların təsadüfi seçilmiş kiçik bir hissəsi (4%, üstəlik 1 saniyədən uzun çəkən hər çağırış) performans qeydi kimi göndərilir. Bu, DomainNameAPI-yə problemləri tapıb düzəltməyə kömək edir. Xəta hesabatları **standart olaraq aktivdir**.
+
+**Göndərilənlər:**
+
+- xəta kodu və mesajı (e-poçt ünvanları və uzun rəqəmlər maskalanır)
+- çağırılan endpoint yolu və HTTP metodu
+- çağırışın müddəti
+- modulun adı, kitabxananın versiyası və PHP versiyası
+- reseller ID və domen adı
+- serverin ictimai (public) IP ünvanı (`api.ipify.org` vasitəsilə müəyyən edilir)
+- hosting hesabı adının anonim, birtərəfli heşi (hash)
+
+**Heç vaxt göndərilməyənlər:** sorğu və cavab məzmunu (body), EPP/auth kodları, əlaqə məlumatları (ad, e-poçt, telefon, ünvan), panel URL-i və ya admin qovluğu, hosting hesabının adının özü, API açarları.
+
+**Necə söndürmək olar:** DomainNameAPI ayarlar ekranında (**Products → Domains → Service Providers**) **Error Reporting** ayarını söndürüb yadda saxlayın. Standart olaraq aktivdir.
+
 ## Alan TLD-lərini İçəri Aktarma
 
 1. "Uzantıları İçəri Aktar" tabını klikləyərək domain adı uzantılarını içəri aktarın.

@@ -25,6 +25,7 @@ return [
         'username'         => '',
         'password'         => '',
         'test-mode'        => 0,
+        'error-reporting'  => 1,
         'adp'              => false,
         'cost-currency'    => 4,
         'exclude'          => '',

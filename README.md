@@ -53,6 +53,28 @@ WiseCP'nin geçiş sihirbazı bu modülün ayarlarını 5'e taşımaz. Geçişte
 
 1. "Bağlantıyı Test Et" düğmesine tıklayarak bağlantının sorunsuz bir şekilde kurulup kurulmadığını kontrol edin.
 
+## Notlar
+
+- Zorunlu bir iletişim alanı (ad, e-posta, adres, şehir, ülke, posta kodu, telefon) eksik olduğunda kayıt ve iletişim bilgisi güncellemeleri açık bir mesajla durur. .tr alan adlarında, alan adı sahibinin T.C. kimlik numarası (bireysel) ya da vergi dairesi ve vergi numarası (kurumsal) müşteri profilinde bulunmalıdır.
+
+## Hata raporlama (telemetri)
+
+Bir API çağrısı başarısız olduğunda modül, DomainNameAPI'nin kendi hata takip sistemine (Sentry, `sentry.atakdomain.com`) bir hata raporu gönderir. Başarılı çağrıların rastgele seçilen küçük bir kısmı (%4, ayrıca 1 saniyeden uzun süren her çağrı) performans kaydı olarak gönderilir. Bu, DomainNameAPI'nin sorunları bulup düzeltmesine yardımcı olur. Hata raporlama **varsayılan olarak açıktır**.
+
+**Gönderilenler:**
+
+- hata kodu ve mesajı (e-posta adresleri ve uzun sayılar maskelenir)
+- çağrılan uç nokta yolu ve HTTP yöntemi
+- çağrı süresi
+- modül adı, kütüphane sürümü ve PHP sürümü
+- bayi kimliği (Reseller ID) ve alan adı
+- sunucunun genel (public) IP adresi (`api.ipify.org` üzerinden öğrenilir)
+- hosting hesap adının anonim, tek yönlü özeti (hash)
+
+**Asla gönderilmeyenler:** istek ve yanıt gövdeleri, EPP/transfer kodları, kişi bilgileri (ad, e-posta, telefon, adres), panel adresi (URL) veya yönetici dizini, hosting hesap adının kendisi, API anahtarları.
+
+**Nasıl kapatılır:** DomainNameAPI ayar ekranında (**Ürünler → Alan Adları → Servis Sağlayıcılar**) **Hata Raporlama** ayarını kapatıp kaydedin. Varsayılan olarak açıktır.
+
 ## Alan TLD'lerini İçeri Aktarma
 
 1. "Uzantıları İçeri Aktar" sekmesine tıklayarak alan adı uzantılarını içeri aktarın.

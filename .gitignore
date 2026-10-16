@@ -7,3 +7,5 @@
 *.iml
 .testoutput
 coremio/modules/Registrars/DomainNameAPI/config.php
+dist/
+

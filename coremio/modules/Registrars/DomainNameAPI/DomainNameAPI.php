@@ -106,6 +106,12 @@ class DomainNameAPI extends \RegistrarModule
             $changed = true;
         }
 
+        // Error reporting predates the setting: installs that never saw it keep it on.
+        if (!array_key_exists('error-reporting', $this->config['settings'] ?? [])) {
+            $this->config['settings']['error-reporting'] = 1;
+            $changed = true;
+        }
+
         if ($changed) {
             \FileManager::file_write($configFile, \Utility::array_export($this->config, ['pwith' => true]));
         }
@@ -138,6 +144,12 @@ class DomainNameAPI extends \RegistrarModule
                 'description' => $this->lang['desc']['test-mode'] ?? '',
                 'type'        => 'approval',
                 'checked'     => (bool) ($data['test-mode'] ?? false),
+            ],
+            'error-reporting' => [
+                'name'        => $this->lang['fields']['error-reporting'] ?? 'Error Reporting',
+                'description' => $this->lang['desc']['error-reporting'] ?? '',
+                'type'        => 'approval',
+                'checked'     => $this->dnaReportsErrors($data),
             ],
             'adp'           => [
                 'name'        => $this->lang['fields']['adp'] ?? 'Automatic Cost Updates',
@@ -179,6 +191,7 @@ class DomainNameAPI extends \RegistrarModule
 
         // An unticked box is absent from the post, which is its "off" value.
         $settings['test-mode']     = (int) ($fields['test-mode'] ?? 0) === 1 ? 1 : 0;
+        $settings['error-reporting'] = (int) ($fields['error-reporting'] ?? 0) === 1 ? 1 : 0;
         $settings['adp']           = (int) ($fields['adp'] ?? 0) === 1;
         $settings['cost-currency'] = (int) ($fields['cost-currency'] ?? 4) ?: 4;
         $settings['exclude']       = implode(',', $this->dnaParseTldList((string) ($fields['exclude'] ?? '')));
@@ -330,6 +343,7 @@ class DomainNameAPI extends \RegistrarModule
         }
 
         $whois      = $this->dnaContactsIn((array) ($this->options['whois'] ?? []));
+        $this->dnaRequireContacts($whois);
         $dns        = array_values($this->dnaNameservers((array) ($this->options['dns'] ?? [])));
         $privacy    = $this->dnaWantsPrivacy();
         $additional = str_ends_with($domain, '.tr') ? $this->dnaTrabisAttributes($whois) : [];
@@ -798,7 +812,10 @@ class DomainNameAPI extends \RegistrarModule
 
     public function save_contacts(array $whois): bool
     {
-        $response = $this->dnaClient()->saveContacts($this->dnaDomain(), $this->dnaContactsIn($whois));
+        $contacts = $this->dnaContactsIn($whois);
+        $this->dnaRequireContacts($contacts);
+
+        $response = $this->dnaClient()->saveContacts($this->dnaDomain(), $contacts);
 
         if (!$this->dnaOk($response)) {
             throw new Exception($this->dnaFail($response));
@@ -1021,10 +1038,14 @@ class DomainNameAPI extends \RegistrarModule
         $this->dnaIncludeLibrary();
 
         try {
-            return new DomainNameAPI_PHPLibrary($username, $password, $testMode);
+            $client = new DomainNameAPI_PHPLibrary($username, $password, $testMode);
         } catch (\Throwable $e) {
             throw new Exception($e->getMessage());
         }
+
+        $client->setErrorReportingEnabled($this->dnaReportsErrors($this->config['settings'] ?? []));
+
+        return $client;
     }
 
     /**
@@ -1341,22 +1362,8 @@ class DomainNameAPI extends \RegistrarModule
                 "Status"           => '',
             ];
 
-            $defaults = [
-                'FirstName'        => 'Isimyok',
-                'AddressLine1'     => 'Addres yok',
-                'City'             => 'ISTANBUL',
-                'Country'          => 'TR',
-                'ZipCode'          => '34000',
-                'PhoneCountryCode' => '90',
-                'Phone'            => '5555555555',
-            ];
-
-            foreach ($defaults as $field => $default) {
-                if (trim($contact[$field]) === '') {
-                    $contact[$field] = $default;
-                }
-            }
-
+            // Missing details are reported by dnaRequireContacts(), never filled in: a
+            // placeholder would end up in the public WHOIS record.
             if (trim($contact['LastName']) === '') {
                 $contact['LastName'] = $contact['FirstName'];
             }
@@ -1384,8 +1391,41 @@ class DomainNameAPI extends \RegistrarModule
     }
 
     /**
+     * Stop when a contact lacks what the registry needs, naming the missing fields, instead of
+     * sending placeholders that would be published in WHOIS.
+     */
+    private function dnaRequireContacts(array $contacts): void
+    {
+        $required = ['FirstName', 'EMail', 'AddressLine1', 'City', 'Country', 'ZipCode', 'Phone'];
+        $labels   = (array) ($this->lang['contact-fields'] ?? []);
+        $missing  = [];
+
+        foreach ($contacts as $type => $contact) {
+            foreach ($required as $field) {
+                if (trim((string) ($contact[$field] ?? '')) === '') {
+                    $missing[$field] = $labels[$field] ?? $field;
+                }
+            }
+        }
+
+        if ($missing) {
+            $message = $this->lang['error13'] ?? 'Contact details are incomplete. Missing: %s';
+            throw new Exception(sprintf($message, implode(', ', $missing)));
+        }
+    }
+
+    /**
+     * Error reporting (telemetry) is on unless the setting was switched off.
+     */
+    private function dnaReportsErrors(array $settings): bool
+    {
+        return !array_key_exists('error-reporting', $settings) || !empty($settings['error-reporting']);
+    }
+
+    /**
      * TRABIS attributes a .tr registration needs: an organisation with its tax details, or a
-     * person with a citizen id, taken from the owner's profile with the registry's placeholders.
+     * person with a citizen id, taken from the owner's profile. A missing one stops the order
+     * instead of registering the domain with a made-up number.
      */
     private function dnaTrabisAttributes(array $whois): array
     {
@@ -1399,9 +1439,9 @@ class DomainNameAPI extends \RegistrarModule
             'TRABISCITIYID'        => 888,
         ];
 
-        $identity   = "11111111111";
-        $tax_number = '1111111111';
-        $tax_office = 'Bilinmiyor';
+        $identity   = '';
+        $tax_number = '';
+        $tax_office = '';
 
         $owner_id = (int) ($this->user['id'] ?? ($this->service['owner_id'] ?? 0));
         $user     = $owner_id ? \User::getInfo($owner_id, ['identity', 'company_tax_number', 'company_tax_office']) : [];
@@ -1416,6 +1456,13 @@ class DomainNameAPI extends \RegistrarModule
             if (!empty($user['company_tax_number'])) {
                 $tax_number = $user['company_tax_number'];
             }
+        }
+
+        if ($registrant['Company'] && (trim($tax_number) === '' || trim($tax_office) === '')) {
+            throw new Exception($this->lang['error14'] ?? 'The tax office and tax number of the company are required for a .tr domain.');
+        }
+        if (!$registrant['Company'] && trim($identity) === '') {
+            throw new Exception($this->lang['error15'] ?? 'The Turkish ID number of the owner is required for a .tr domain.');
         }
 
         if ($registrant['Company']) {

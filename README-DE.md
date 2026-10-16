@@ -53,6 +53,28 @@ Der Migrationsassistent von WiseCP übernimmt die Einstellungen dieses Moduls ni
 
 1. Klicken Sie auf die Schaltfläche "Verbindung testen", um zu überprüfen, ob die Verbindung erfolgreich hergestellt wurde.
 
+## Hinweise
+
+- Registrierungen und Kontaktaktualisierungen brechen mit einer klaren Meldung ab, wenn ein Pflicht-Kontaktfeld (Vorname, E-Mail, Adresse, Stadt, Land, Postleitzahl, Telefon) fehlt. Bei .tr-Domains muss im Kundenprofil die T.C.-Identitätsnummer des Inhabers (Privatpersonen) bzw. Finanzamt und Steuernummer (Unternehmen) hinterlegt sein.
+
+## Fehlerberichte (Telemetrie)
+
+Wenn ein API-Aufruf fehlschlägt, sendet das Modul einen Fehlerbericht an den eigenen Fehler-Tracker von DomainNameAPI (Sentry, unter `sentry.atakdomain.com`). Ein kleiner, zufällig gewählter Anteil erfolgreicher Aufrufe (4 %, dazu jeder Aufruf, der länger als 1 Sekunde dauert) wird als Performance-Datensatz gesendet. Das hilft DomainNameAPI, Probleme zu finden und zu beheben. Fehlerberichte sind **standardmäßig aktiviert**.
+
+**Was gesendet wird:**
+
+- Fehlercode und -meldung (E-Mail-Adressen und lange Zahlen werden maskiert)
+- Pfad des aufgerufenen Endpunkts und HTTP-Methode
+- Dauer des Aufrufs
+- Modulname, Bibliotheksversion und PHP-Version
+- Reseller-ID und Domainname
+- die öffentliche IP-Adresse des Servers (ermittelt über `api.ipify.org`)
+- ein anonymer Einweg-Hash des Hosting-Kontonamens
+
+**Was nie gesendet wird:** Anfrage- oder Antwortinhalte, EPP-/Auth-Codes, Kontaktdaten (Namen, E-Mail, Telefon, Adresse), die Panel-URL oder das Admin-Verzeichnis, der Hosting-Kontoname selbst, API-Keys.
+
+**So schalten Sie es ab:** Deaktivieren Sie die Einstellung **Fehlerberichte** im DomainNameAPI-Einstellungsbildschirm (**Products → Domains → Service Providers**) und speichern Sie. Standardmäßig ist sie aktiviert.
+
 ## Importieren von Domain-TLDs
 
 1. Klicken Sie auf die Registerkarte "TLDs importieren", um die Domainnamenserweiterungen zu importieren.
