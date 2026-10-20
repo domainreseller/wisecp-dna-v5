@@ -17,7 +17,7 @@ return [
         'username'      => 'Uw Reseller-ID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) uit de API-instellingen in het DomainNameAPI-panel. Uw inlog-e-mail van het panel werkt hier niet.',
         'password'      => 'De API-sleutel van de Reseller-ID. Laat het masker ongewijzigd om de opgeslagen waarde te behouden.',
         'test-mode'     => 'Activeren om te verwerken in de testmodus',
-        'error-reporting' => 'Stuurt mislukte API-aanroepen en een klein deel van de geslaagde naar DomainNameAPI (sentry.atakdomain.com) om problemen te onderzoeken: foutcode en -melding, endpoint, duur, module- en PHP-versie, reseller-ID, domein, server-IP en een anonieme hash van het hostingaccount. Verzoekinhoud, EPP-codes en contactgegevens worden nooit verstuurd.',
+        'error-reporting' => 'Stuurt mislukte API-aanroepen en een klein deel van de geslaagde naar DomainNameAPI (sentry.atakdomain.com) voor gebruiksmeting en vroege probleemdiagnose: foutcode en -melding, endpoint, duur, module- en PHP-versie, reseller-ID, domein, URL van de panelpagina, server-IP, naam van het hostingaccount en het API-verzoek/-antwoord inclusief contactgegevens. Alleen inloggegevens (EPP-codes, API-sleutels, wachtwoorden, tokens) worden gemaskeerd. De gegevens worden 30 dagen bewaard.',
         'adp'           => 'Haalt de prijzen dagelijks automatisch op, en de prijs wordt vastgesteld tegen het winstpercentage',
         'cost-currency' => 'Valuta voor extensiekosten die de API zonder valuta teruggeeft.',
         'exclude'       => 'Kommagescheiden extensies die nooit worden geïmporteerd of bijgewerkt, bijv. com.tr,org.tr',

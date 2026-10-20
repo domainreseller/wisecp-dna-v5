@@ -17,7 +17,7 @@ return [
         'username'      => 'Your Reseller ID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) from API Settings in the DomainNameAPI panel. Your panel login e-mail does not work here.',
         'password'      => 'The API Key of the Reseller ID. Leave the mask untouched to keep the saved value.',
         'test-mode'     => 'Activate to process in test mode',
-        'error-reporting' => 'Sends failed API calls and a small share of successful ones to DomainNameAPI (sentry.atakdomain.com) to diagnose problems: error code and message, endpoint, timing, module and PHP version, reseller ID, domain, server IP and an anonymous hash of the hosting account. Request bodies, EPP codes and contact details are never sent.',
+        'error-reporting' => 'Sends failed API calls and a small share of successful ones to DomainNameAPI (sentry.atakdomain.com) for usage measurement and early diagnosis: error code and message, endpoint, timing, module and PHP version, reseller ID, domain, panel page URL, server IP, hosting account name, and the API request/response including contact details. Only credentials (EPP codes, API keys, passwords, tokens) are masked. Data is kept for 30 days.',
         'adp'           => 'Automatically pulls pricing daily and the price is set at the profit rate',
         'cost-currency' => 'Currency for extension costs the API returns without one.',
         'exclude'       => 'Comma-separated extensions that are never imported or updated, e.g. com.tr,org.tr',

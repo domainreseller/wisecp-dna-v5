@@ -17,7 +17,7 @@ return [
         'username'      => 'Ihre Reseller-ID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) aus den API-Einstellungen im DomainNameAPI-Panel. Ihre Panel-Login-E-Mail funktioniert hier nicht.',
         'password'      => 'Der API-Schlüssel der Reseller-ID. Lassen Sie die Maske unverändert, um den gespeicherten Wert zu behalten.',
         'test-mode'     => 'Aktivieren Sie diese Option, um sie im Testmodus zu verarbeiten',
-        'error-reporting' => 'Sendet fehlgeschlagene API-Aufrufe und einen kleinen Teil der erfolgreichen an DomainNameAPI (sentry.atakdomain.com), um Probleme zu diagnostizieren: Fehlercode und -meldung, Endpunkt, Dauer, Modul- und PHP-Version, Reseller-ID, Domain, Server-IP und ein anonymer Hash des Hosting-Kontos. Anfrageinhalte, EPP-Codes und Kontaktdaten werden nie gesendet.',
+        'error-reporting' => 'Sendet fehlgeschlagene API-Aufrufe und einen kleinen Teil der erfolgreichen zur Nutzungsmessung und frühen Fehlerdiagnose an DomainNameAPI (sentry.atakdomain.com): Fehlercode und -meldung, Endpunkt, Dauer, Modul- und PHP-Version, Reseller-ID, Domain, URL der Panelseite, Server-IP, Name des Hosting-Kontos sowie die API-Anfrage/-Antwort einschließlich Kontaktdaten. Nur Zugangsdaten (EPP-Codes, API-Schlüssel, Passwörter, Tokens) werden maskiert. Die Daten werden 30 Tage aufbewahrt.',
         'adp'           => 'Täglich wird automatisch die Preisgestaltung abgerufen und der Preis wird auf die Gewinnrate festgelegt',
         'cost-currency' => 'Währung für Endungskosten, die die API ohne Währung liefert.',
         'exclude'       => 'Kommagetrennte Endungen, die nie importiert oder aktualisiert werden, z. B. com.tr,org.tr',

@@ -17,7 +17,7 @@ return [
         'username'      => "Votre ID revendeur (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx), dans les paramètres API du panneau DomainNameAPI. L'e-mail de connexion au panneau ne fonctionne pas ici.",
         'password'      => "La clé API de l'ID revendeur. Laissez le masque inchangé pour conserver la valeur enregistrée.",
         'test-mode'     => 'Activez pour traiter en mode test',
-        'error-reporting' => 'Envoie les appels API échoués et une petite partie des appels réussis à DomainNameAPI (sentry.atakdomain.com) pour diagnostiquer les problèmes : code et message d\'erreur, point de terminaison, durée, versions du module et de PHP, ID revendeur, domaine, IP du serveur et un hachage anonyme du compte d\'hébergement. Les corps de requête, codes EPP et coordonnées ne sont jamais envoyés.',
+        'error-reporting' => 'Envoie les appels API échoués et une petite partie des appels réussis à DomainNameAPI (sentry.atakdomain.com) pour la mesure d\'utilisation et le diagnostic précoce : code et message d\'erreur, point de terminaison, durée, versions du module et de PHP, ID revendeur, domaine, URL de la page du panneau, IP du serveur, nom du compte d\'hébergement et la requête/réponse API, coordonnées comprises. Seuls les identifiants (codes EPP, clés API, mots de passe, jetons) sont masqués. Les données sont conservées 30 jours.',
         'adp'           => 'Récupère automatiquement les prix quotidiennement et le prix est fixé au taux de profit',
         'cost-currency' => "Devise des coûts d'extension que l'API renvoie sans devise.",
         'exclude'       => 'Extensions séparées par des virgules, jamais importées ni mises à jour, par ex. com.tr,org.tr',
