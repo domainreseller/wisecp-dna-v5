@@ -124,8 +124,8 @@ class DomainNameAPI extends \RegistrarModule
     {
         $data = is_array($data) && $data ? $data : ($this->config['settings'] ?? []);
 
-        // The core settings template draws cost-currency and the default nameservers itself;
-        // auto-pricing (adp) only when the module has cost_prices(), so that one is ours.
+        // The core settings template draws the default nameservers itself; everything else,
+        // cost currency included, is ours.
         return [
             'username'      => [
                 'name'        => $this->lang['fields']['username'] ?? 'Reseller ID',
@@ -156,6 +156,13 @@ class DomainNameAPI extends \RegistrarModule
                 'description' => $this->lang['desc']['adp'] ?? '',
                 'type'        => 'approval',
                 'checked'     => (bool) ($data['adp'] ?? false),
+            ],
+            'cost-currency' => [
+                'name'        => $this->lang['fields']['cost-currency'] ?? 'Cost Currency',
+                'description' => $this->lang['desc']['cost-currency'] ?? '',
+                'type'        => 'dropdown',
+                'value'       => (int) ($data['cost-currency'] ?? 4),
+                'options'     => $this->dnaCurrencyOptions((int) ($data['cost-currency'] ?? 4)),
             ],
             'exclude'       => [
                 'name'        => $this->lang['fields']['exclude'] ?? 'Excluded Extensions',
@@ -1412,6 +1419,25 @@ class DomainNameAPI extends \RegistrarModule
             $message = $this->lang['error13'] ?? 'Contact details are incomplete. Missing: %s';
             throw new Exception(sprintf($message, implode(', ', $missing)));
         }
+    }
+
+    /**
+     * Currencies defined in WISECP, for the cost currency choice: id => "Name (CODE)".
+     */
+    private function dnaCurrencyOptions(int $selected): array
+    {
+        $options = [];
+        try {
+            foreach ((array) \Money::getCurrencies($selected) as $currency) {
+                if (isset($currency['id'])) {
+                    $options[(int) $currency['id']] = trim(($currency['name'] ?? '') . ' (' . ($currency['code'] ?? '') . ')');
+                }
+            }
+        } catch (\Throwable $e) {
+            // Leave the list empty rather than break the settings page.
+        }
+
+        return $options;
     }
 
     /**
