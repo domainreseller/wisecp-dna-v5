@@ -77,7 +77,7 @@ Lorsqu'un appel API échoue, le module envoie un rapport d'erreur au système de
 
 **Pourquoi et combien de temps :** les données servent uniquement à mesurer l'utilisation et à diagnostiquer les problèmes au plus tôt ; elles sont conservées 30 jours sur le serveur Sentry propre à DomainNameAPI, puis supprimées automatiquement.
 
-**Comment le désactiver :** désactivez le paramètre **Rapports d'erreurs** sur l'écran des paramètres DomainNameAPI (**Products → Domains → Service Providers**) puis enregistrez. Il est activé par défaut.
+**Comment le désactiver :** désactivez le paramètre **Télémétrie & rapports d'erreurs** sur l'écran des paramètres DomainNameAPI (**Products → Domains → Service Providers**) puis enregistrez. Il est activé par défaut.
 
 ## Importation des TLD de domaine
 

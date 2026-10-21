@@ -77,7 +77,7 @@ Bir API çağrısı başarısız olduğunda modül, DomainNameAPI'nin kendi hata
 
 **Neden ve ne kadar süre:** veriler yalnızca kullanım ölçümü ve sorunların erken teşhisi için kullanılır; DomainNameAPI'nin kendi Sentry sunucusunda 30 gün saklanır, ardından otomatik olarak silinir.
 
-**Nasıl kapatılır:** DomainNameAPI ayar ekranında (**Ürünler → Alan Adları → Servis Sağlayıcılar**) **Hata Raporlama** ayarını kapatıp kaydedin. Varsayılan olarak açıktır.
+**Nasıl kapatılır:** DomainNameAPI ayar ekranında (**Ürünler → Alan Adları → Servis Sağlayıcılar**) **Telemetri & Hata Raporlama** ayarını kapatıp kaydedin. Varsayılan olarak açıktır.
 
 ## Alan TLD'lerini İçeri Aktarma
 

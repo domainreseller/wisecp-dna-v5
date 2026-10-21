@@ -77,7 +77,7 @@ When an API call fails, the module sends an error report to DomainNameAPI's own 
 
 **Why and how long:** the data is used only for usage measurement and early diagnosis of problems, and is kept for 30 days on DomainNameAPI's own Sentry server, after which it is deleted automatically.
 
-**How to turn it off:** switch off the **Error Reporting** setting on the DomainNameAPI settings screen (**Products → Domains → Service Providers**) and save. It is on by default.
+**How to turn it off:** switch off the **Telemetry & Error Reporting** setting on the DomainNameAPI settings screen (**Products → Domains → Service Providers**) and save. It is on by default.
 
 ## Importing Domain TLDs
 

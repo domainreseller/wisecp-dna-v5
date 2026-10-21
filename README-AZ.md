@@ -77,7 +77,7 @@ API çağırışı uğursuz olduqda modul DomainNameAPI-nin öz xəta izləmə s
 
 **Niyə və nə qədər müddətə:** məlumatlar yalnız istifadənin ölçülməsi və problemlərin erkən diaqnostikası üçün istifadə olunur, DomainNameAPI-nin öz Sentry serverində 30 gün saxlanılır, sonra avtomatik olaraq silinir.
 
-**Necə söndürmək olar:** DomainNameAPI ayarlar ekranında (**Products → Domains → Service Providers**) **Error Reporting** ayarını söndürüb yadda saxlayın. Standart olaraq aktivdir.
+**Necə söndürmək olar:** DomainNameAPI ayarlar ekranında (**Products → Domains → Service Providers**) **Telemetry & Error Reporting** ayarını söndürüb yadda saxlayın. Standart olaraq aktivdir.
 
 ## Alan TLD-lərini İçəri Aktarma
 

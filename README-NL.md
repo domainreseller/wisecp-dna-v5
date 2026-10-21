@@ -77,7 +77,7 @@ Wanneer een API-aanroep mislukt, stuurt de module een foutrapport naar de eigen 
 
 **Waarom en hoe lang:** de gegevens worden alleen gebruikt voor gebruiksmeting en het vroegtijdig opsporen van problemen, en worden 30 dagen bewaard op de eigen Sentry-server van DomainNameAPI, waarna ze automatisch worden verwijderd.
 
-**Uitschakelen:** zet de instelling **Foutrapportage** uit op het DomainNameAPI-instellingenscherm (**Products → Domains → Service Providers**) en sla op. Standaard staat deze aan.
+**Uitschakelen:** zet de instelling **Telemetrie & foutrapportage** uit op het DomainNameAPI-instellingenscherm (**Products → Domains → Service Providers**) en sla op. Standaard staat deze aan.
 
 ## Importeren van domein TLD's
 

@@ -77,7 +77,7 @@ Wenn ein API-Aufruf fehlschlägt, sendet das Modul einen Fehlerbericht an den ei
 
 **Wozu und wie lange:** Die Daten werden ausschließlich zur Nutzungsmessung und zur frühzeitigen Erkennung von Problemen verwendet und 30 Tage lang auf dem eigenen Sentry-Server von DomainNameAPI gespeichert; danach werden sie automatisch gelöscht.
 
-**So schalten Sie es ab:** Deaktivieren Sie die Einstellung **Fehlerberichte** im DomainNameAPI-Einstellungsbildschirm (**Products → Domains → Service Providers**) und speichern Sie. Standardmäßig ist sie aktiviert.
+**So schalten Sie es ab:** Deaktivieren Sie die Einstellung **Telemetrie & Fehlerberichte** im DomainNameAPI-Einstellungsbildschirm (**Products → Domains → Service Providers**) und speichern Sie. Standardmäßig ist sie aktiviert.
 
 ## Importieren von Domain-TLDs
 
