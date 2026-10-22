@@ -17,7 +17,7 @@ return [
         'username'      => 'Ihre Reseller-ID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) aus den API-Einstellungen im DomainNameAPI-Panel. Ihre Panel-Login-E-Mail funktioniert hier nicht.',
         'password'      => 'Der API-Schlüssel der Reseller-ID. Lassen Sie die Maske unverändert, um den gespeicherten Wert zu behalten.',
         'test-mode'     => 'Aktivieren Sie diese Option, um sie im Testmodus zu verarbeiten',
-        'error-reporting' => 'Sendet fehlgeschlagene API-Aufrufe und einen kleinen Teil der erfolgreichen zur Nutzungsmessung und frühen Fehlerdiagnose an DomainNameAPI. Wird vorübergehend gespeichert.',
+        'error-reporting' => 'Wenn aktiviert, werden Fehlercode und -meldung, API-Endpunkt, Dauer, Versionsangaben und Reseller-ID zur Diagnose und Nutzungsmessung an DomainNameAPI (sentry.atakdomain.com) gesendet. Kontaktdaten, Domainnamen, Paneladresse und Serverdaten werden nicht gesendet. Standardmäßig aus.',
         'adp'           => 'Täglich wird automatisch die Preisgestaltung abgerufen und der Preis wird auf die Gewinnrate festgelegt',
         'cost-currency' => 'Währung für Endungskosten, die die API ohne Währung liefert.',
         'exclude'       => 'Kommagetrennte Endungen, die nie importiert oder aktualisiert werden, z. B. com.tr,org.tr',

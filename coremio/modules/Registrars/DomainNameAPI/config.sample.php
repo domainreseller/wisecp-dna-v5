@@ -3,7 +3,7 @@
 return [
     'meta'     => [
         'name'    => 'DomainNameAPI',
-        'version' => '4.0.2',
+        'version' => '4.0.3',
         'logo'    => 'logo.png',
     ],
     'settings' => [
@@ -25,7 +25,7 @@ return [
         'username'         => '',
         'password'         => '',
         'test-mode'        => 0,
-        'error-reporting'  => 1,
+        'error-reporting'  => 0,
         'adp'              => false,
         'cost-currency'    => 4,
         'exclude'          => '',

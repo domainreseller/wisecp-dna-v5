@@ -59,25 +59,21 @@ WiseCP'nin geçiş sihirbazı bu modülün ayarlarını 5'e taşımaz. Geçişte
 
 ## Hata raporlama (telemetri)
 
-Bir API çağrısı başarısız olduğunda modül, DomainNameAPI'nin kendi hata takip sistemine (Sentry, `sentry.atakdomain.com`) bir hata raporu gönderir. Başarılı çağrıların rastgele seçilen küçük bir kısmı (%4, ayrıca 1 saniyeden uzun süren her çağrı) performans kaydı olarak gönderilir. Bu, DomainNameAPI'nin sorunları bulup düzeltmesine yardımcı olur. Hata raporlama **varsayılan olarak açıktır**.
+Modül, hata raporlarını DomainNameAPI'nin kendi hata takip sistemine (Sentry, `sentry.atakdomain.com`) gönderebilir: bir API çağrısı başarısız olduğunda ve başarılı çağrıların rastgele seçilen küçük bir kısmı için (%4, ayrıca 1 saniyeden uzun süren her çağrı). Bu, DomainNameAPI'nin kullanımı ölçmesine ve sorunları erken bulmasına yardımcı olur. Bu özellik **varsayılan olarak kapalıdır** ve yalnızca yönetici açtığında çalışır.
 
-**Gönderilenler:**
+**Gönderilenler (yalnızca açıldığında):**
 
 - hata kodu ve mesajı
-- çağrılan uç nokta yolu ve HTTP yöntemi
+- çağrılan API uç nokta yolu ve HTTP yöntemi
 - çağrı süresi
-- modül adı, kütüphane sürümü ve PHP sürümü
-- bayi kimliği (Reseller ID) ve alan adı
-- sunucunun genel (public) IP adresi (`api.ipify.org` üzerinden öğrenilir)
-- çağrıyı tetikleyen panel sayfasının adresi (URL)
-- sunucudaki hosting hesap adı
-- API isteği ve yanıtı, alan adının kişi bilgileri dahil; yalnızca kimlik bilgileri maskelenir — EPP/transfer kodları, API anahtarları, parolalar ve token'lar `***` ile değiştirilir
+- modül, kütüphane ve PHP sürümü
+- bayi kimliği (Reseller ID — modülün bağlandığı DomainNameAPI hesabı)
 
-**Asla gönderilmeyenler:** okunabilir biçimde EPP/transfer kodları, API anahtarları, parolalar veya token'lar; hata izlerindeki (stack trace) fonksiyon çağrısı argümanları.
+**Gönderilmeyenler:** API isteği veya yanıtının içeriği; alan adı sahiplerinin iletişim bilgileri (ad, e-posta, telefon, adres, kimlik/vergi numaraları); alan adları; EPP/transfer kodları; API anahtarları; panel sayfasının adresi; hosting hesap adı veya sunucudaki dosya yolları; sunucunun IP adresi (herhangi bir IP sorgusu yapılmaz).
 
-**Neden ve ne kadar süre:** veriler yalnızca kullanım ölçümü ve sorunların erken teşhisi için kullanılır; DomainNameAPI'nin kendi Sentry sunucusunda 30 gün saklanır, ardından otomatik olarak silinir.
+**Saklama:** veriler DomainNameAPI'nin kendi sunucusunda geçici olarak saklanır, ardından otomatik olarak silinir.
 
-**Nasıl kapatılır:** DomainNameAPI ayar ekranında (**Ürünler → Alan Adları → Servis Sağlayıcılar**) **Telemetri & Hata Raporlama** ayarını kapatıp kaydedin. Varsayılan olarak açıktır.
+**Nasıl açılır/kapatılır:** DomainNameAPI ayar ekranında (**Ürünler → Alan Adları → Servis Sağlayıcılar**) **Telemetri & Hata Raporlama** ayarını işaretleyin veya işaretini kaldırın ve kaydedin.
 
 ## Alan TLD'lerini İçeri Aktarma
 

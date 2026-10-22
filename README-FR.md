@@ -59,25 +59,21 @@ L'assistant de migration de WiseCP ne transfère pas les réglages de ce module 
 
 ## Rapports d'erreurs (télémétrie)
 
-Lorsqu'un appel API échoue, le module envoie un rapport d'erreur au système de suivi des erreurs de DomainNameAPI (Sentry, à l'adresse `sentry.atakdomain.com`). Une petite part aléatoire des appels réussis (4 %, plus chaque appel de plus d'une seconde) est envoyée comme enregistrement de performance. Cela aide DomainNameAPI à trouver et corriger les problèmes. Les rapports d'erreurs sont **activés par défaut**.
+Le module peut envoyer des rapports d'erreurs au système de suivi des erreurs propre à DomainNameAPI (Sentry, `sentry.atakdomain.com`) : lorsqu'un appel API échoue, et pour une petite part aléatoire des appels réussis (4 %, plus chaque appel de plus d'une seconde). Cela aide DomainNameAPI à mesurer l'utilisation et à détecter les problèmes au plus tôt. Cette fonction est **désactivée par défaut** et ne fonctionne que si l'administrateur l'active.
 
-**Ce qui est envoyé :**
+**Envoyé (uniquement si activé) :**
 
-- le code et le message d'erreur
-- le chemin du point de terminaison appelé et la méthode HTTP
-- la durée de l'appel
-- le nom du module, la version de la bibliothèque et la version de PHP
-- l'ID revendeur et le nom de domaine
-- l'adresse IP publique du serveur (obtenue via `api.ipify.org`)
-- l'adresse (URL) de la page du panneau ayant déclenché l'appel
-- le nom du compte d'hébergement sur le serveur
-- la requête et la réponse API, y compris les coordonnées de contact du domaine ; seuls les identifiants sont masqués — les codes EPP/auth, clés API, mots de passe et jetons sont remplacés par `***`
+- code et message d'erreur
+- chemin du point de terminaison API appelé et méthode HTTP
+- durée de l'appel
+- version du module, de la bibliothèque et de PHP
+- ID revendeur (le compte DomainNameAPI auquel le module se connecte)
 
-**Ce qui n'est jamais envoyé :** les codes EPP/auth, clés API, mots de passe ou jetons sous forme lisible ; les arguments des appels de fonction dans les traces de pile (stack traces).
+**Non envoyé :** le contenu des requêtes ou réponses API ; les coordonnées des titulaires de domaines (nom, e-mail, téléphone, adresse, numéros d'identité/fiscaux) ; les noms de domaine ; les codes EPP/auth ; les clés API ; l'adresse de la page du panneau ; le nom du compte d'hébergement ou les chemins de fichiers du serveur ; l'adresse IP du serveur (aucune recherche d'IP n'est effectuée).
 
-**Pourquoi et combien de temps :** les données servent uniquement à mesurer l'utilisation et à diagnostiquer les problèmes au plus tôt ; elles sont conservées 30 jours sur le serveur Sentry propre à DomainNameAPI, puis supprimées automatiquement.
+**Conservation :** conservé temporairement sur le serveur propre à DomainNameAPI, puis supprimé automatiquement.
 
-**Comment le désactiver :** désactivez le paramètre **Télémétrie & rapports d'erreurs** sur l'écran des paramètres DomainNameAPI (**Products → Domains → Service Providers**) puis enregistrez. Il est activé par défaut.
+**Comment l'activer ou le désactiver :** cochez ou décochez le paramètre **Télémétrie & rapports d'erreurs** sur l'écran des paramètres DomainNameAPI (**Products → Domains → Service Providers**) puis enregistrez.
 
 ## Importation des TLD de domaine
 

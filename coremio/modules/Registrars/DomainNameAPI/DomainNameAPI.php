@@ -14,13 +14,13 @@ use Exception;
  * The WISECP 3.x module lives in github.com/domainreseller/wisecp-dna.
  *
  * @package    coremio/modules/Registrars/DomainNameAPI
- * @version    4.0.2
+ * @version    4.0.3
  * @license    MIT License https://opensource.org/licenses/MIT
  * @maintainer Bünyamin AKÇAY<bunyamin@bunyam.in>
  */
 class DomainNameAPI extends \RegistrarModule
 {
-    const VERSION = '4.0.2';
+    const VERSION = '4.0.3';
 
     /**
      * Zone record types the gateway can store.
@@ -106,9 +106,9 @@ class DomainNameAPI extends \RegistrarModule
             $changed = true;
         }
 
-        // Error reporting predates the setting: installs that never saw it keep it on.
+        // Telemetry is opt-in: an install that never saved the setting gets it written as off.
         if (!array_key_exists('error-reporting', $this->config['settings'] ?? [])) {
-            $this->config['settings']['error-reporting'] = 1;
+            $this->config['settings']['error-reporting'] = 0;
             $changed = true;
         }
 
@@ -1044,6 +1044,9 @@ class DomainNameAPI extends \RegistrarModule
         }
 
         $client->setErrorReportingEnabled($this->dnaReportsErrors($this->config['settings'] ?? []));
+        // When switched on, reports carry only the error code and message, endpoint, timing,
+        // versions and reseller ID: no customer data, domain, panel address, account or server IP.
+        $client->setTelemetryMinimal(true);
 
         return $client;
     }
@@ -1415,11 +1418,11 @@ class DomainNameAPI extends \RegistrarModule
     }
 
     /**
-     * Error reporting (telemetry) is on unless the setting was switched off.
+     * Telemetry runs only when the administrator switched it on (off by default).
      */
     private function dnaReportsErrors(array $settings): bool
     {
-        return !array_key_exists('error-reporting', $settings) || !empty($settings['error-reporting']);
+        return !empty($settings['error-reporting']);
     }
 
     /**

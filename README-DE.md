@@ -59,25 +59,21 @@ Der Migrationsassistent von WiseCP übernimmt die Einstellungen dieses Moduls ni
 
 ## Fehlerberichte (Telemetrie)
 
-Wenn ein API-Aufruf fehlschlägt, sendet das Modul einen Fehlerbericht an den eigenen Fehler-Tracker von DomainNameAPI (Sentry, unter `sentry.atakdomain.com`). Ein kleiner, zufällig gewählter Anteil erfolgreicher Aufrufe (4 %, dazu jeder Aufruf, der länger als 1 Sekunde dauert) wird als Performance-Datensatz gesendet. Das hilft DomainNameAPI, Probleme zu finden und zu beheben. Fehlerberichte sind **standardmäßig aktiviert**.
+Das Modul kann Fehlerberichte an den eigenen Fehler-Tracker von DomainNameAPI (Sentry, `sentry.atakdomain.com`) senden: wenn ein API-Aufruf fehlschlägt, sowie für einen kleinen, zufällig gewählten Anteil erfolgreicher Aufrufe (4 %, dazu jeder Aufruf, der länger als 1 Sekunde dauert). Das hilft DomainNameAPI, die Nutzung zu messen und Probleme frühzeitig zu erkennen. Die Funktion ist **standardmäßig deaktiviert** und läuft nur, wenn der Administrator sie einschaltet.
 
-**Was gesendet wird:**
+**Gesendet (nur wenn eingeschaltet):**
 
-- Fehlercode und -meldung
-- Pfad des aufgerufenen Endpunkts und HTTP-Methode
+- Fehlercode und Fehlermeldung
+- Pfad des aufgerufenen API-Endpunkts und HTTP-Methode
 - Dauer des Aufrufs
-- Modulname, Bibliotheksversion und PHP-Version
-- Reseller-ID und Domainname
-- die öffentliche IP-Adresse des Servers (ermittelt über `api.ipify.org`)
-- die Adresse (URL) der Panel-Seite, die den Aufruf ausgelöst hat
-- der Name des Hosting-Kontos auf dem Server
-- API-Anfrage und -Antwort, einschließlich der Kontaktdaten der Domain; nur Zugangsdaten werden maskiert – EPP-/Auth-Codes, API-Keys, Passwörter und Tokens werden durch `***` ersetzt
+- Modul-, Bibliotheks- und PHP-Version
+- Reseller-ID (das DomainNameAPI-Konto, mit dem sich das Modul verbindet)
 
-**Was nie gesendet wird:** EPP-/Auth-Codes, API-Keys, Passwörter oder Tokens in lesbarer Form; Funktionsargumente in Stacktraces.
+**Nicht gesendet:** Inhalte von API-Anfragen oder -Antworten; Kontaktdaten von Domaininhabern (Name, E-Mail, Telefon, Adresse, Ausweis-/Steuernummern); Domainnamen; EPP-/Auth-Codes; API-Schlüssel; die Adresse der Panel-Seite; der Name des Hosting-Kontos oder Dateipfade auf dem Server; die IP-Adresse des Servers (es findet keine IP-Abfrage statt).
 
-**Wozu und wie lange:** Die Daten werden ausschließlich zur Nutzungsmessung und zur frühzeitigen Erkennung von Problemen verwendet und 30 Tage lang auf dem eigenen Sentry-Server von DomainNameAPI gespeichert; danach werden sie automatisch gelöscht.
+**Aufbewahrung:** vorübergehend auf dem eigenen Server von DomainNameAPI gespeichert und danach automatisch gelöscht.
 
-**So schalten Sie es ab:** Deaktivieren Sie die Einstellung **Telemetrie & Fehlerberichte** im DomainNameAPI-Einstellungsbildschirm (**Products → Domains → Service Providers**) und speichern Sie. Standardmäßig ist sie aktiviert.
+**Ein- und Ausschalten:** Aktivieren oder deaktivieren Sie die Einstellung **Telemetrie & Fehlerberichte** im DomainNameAPI-Einstellungsbildschirm (**Products → Domains → Service Providers**) und speichern Sie.
 
 ## Importieren von Domain-TLDs
 

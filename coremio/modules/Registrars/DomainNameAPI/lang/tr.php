@@ -17,7 +17,7 @@ return [
         'username'      => 'DomainNameAPI panelindeki API Ayarları bölümünde bulunan Bayi ID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx). Panel giriş e-postanız burada çalışmaz.',
         'password'      => 'Bayi ID\'ye ait API Anahtarı. Kayıtlı değeri korumak için maskeye dokunmayın.',
         'test-mode'     => 'Test modunda işlem yapmak için aktif ediniz.',
-        'error-reporting' => 'Kullanım ölçümü ve sorunların erken teşhisi için başarısız API çağrılarını ve başarılı çağrıların küçük bir kısmını DomainNameAPI\'ye gönderir. Geçici süre saklanır.',
+        'error-reporting' => 'Açıkken, sorunların teşhisi ve kullanım ölçümü için hata kodu ve mesajı, API uç noktası, süre, sürüm bilgisi ve bayi kimliği DomainNameAPI\'ye (sentry.atakdomain.com) gönderilir. Kişi bilgileri, alan adları, panel adresi ve sunucu bilgileri gönderilmez. Varsayılan olarak kapalıdır.',
         'adp'           => 'Maliyetleri her gün otomatik olarak çeker ve belirlediğiniz kâr oranında satış fiyatlarını tanımlar.',
         'cost-currency' => 'API\'nin para birimi göndermediği uzantı maliyetleri için kullanılacak para birimi.',
         'exclude'       => 'Hiçbir zaman içe aktarılmayacak ve güncellenmeyecek uzantılar, virgülle ayrılmış. Örn: com.tr,org.tr',
