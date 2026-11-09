@@ -59,21 +59,25 @@ WiseCP's migration wizard does not carry this module's settings over to 5. After
 
 ## Error reporting (telemetry)
 
-The module can send error reports to DomainNameAPI's own error tracker (Sentry, `sentry.atakdomain.com`): when an API call fails, and for a small random share of successful calls (4%, plus every call slower than 1 second). This helps DomainNameAPI measure usage and find problems early. It is **off by default** and only runs when the administrator turns it on.
+When an API call fails, the module sends an error report to DomainNameAPI's own error tracker (Sentry, at `sentry.atakdomain.com`). A small random share of successful calls (4%, plus every call slower than 1 second) is sent as a performance record. This helps DomainNameAPI find and fix problems. Error reporting is **on by default**.
 
-**Sent (only when turned on):**
+**What is sent:**
 
 - error code and message
-- called API endpoint path and HTTP method
+- called endpoint path and HTTP method
 - call duration
-- module, library and PHP version
-- reseller ID (the DomainNameAPI account the module connects with)
+- module name, library version and PHP version
+- reseller ID and domain name
+- the server's public IP address (looked up via `api.ipify.org`)
+- the address (URL) of the panel page that triggered the call
+- the hosting account name on the server
+- the API request and response, including the domain's contact details; only credentials are masked — EPP/auth codes, API keys, passwords and tokens are replaced with `***`
 
-**Not sent:** API request or response contents; contact details of domain owners (name, e-mail, phone, address, ID/tax numbers); domain names; EPP/auth codes; API keys; the panel page address; the hosting account name or server file paths; the server's IP address (no IP lookup is made).
+**What is never sent:** EPP/auth codes, API keys, passwords or tokens in readable form; function call arguments in stack traces.
 
-**Retention:** kept temporarily on DomainNameAPI's own server, then deleted automatically.
+**Why and how long:** the data is used only for usage measurement and early diagnosis of problems, and is kept for 30 days on DomainNameAPI's own Sentry server, after which it is deleted automatically.
 
-**How to turn it on/off:** tick or untick the **Telemetry & Error Reporting** setting on the DomainNameAPI settings screen (**Products → Domains → Service Providers**) and save.
+**How to turn it off:** switch off the **Telemetry & Error Reporting** setting on the DomainNameAPI settings screen (**Products → Domains → Service Providers**) and save. It is on by default.
 
 ## Importing Domain TLDs
 

@@ -59,21 +59,25 @@ De migratiewizard van WiseCP neemt de instellingen van deze module niet mee naar
 
 ## Foutrapportage (telemetrie)
 
-De module kan foutrapporten sturen naar de eigen fouttracker van DomainNameAPI (Sentry, `sentry.atakdomain.com`): wanneer een API-aanroep mislukt, en voor een klein, willekeurig deel van de geslaagde aanroepen (4%, plus elke aanroep die langer dan 1 seconde duurt). Dit helpt DomainNameAPI het gebruik te meten en problemen vroegtijdig op te sporen. De functie staat **standaard uit** en werkt alleen als de beheerder haar inschakelt.
+Wanneer een API-aanroep mislukt, stuurt de module een foutrapport naar de eigen fouttracker van DomainNameAPI (Sentry, op `sentry.atakdomain.com`). Een klein, willekeurig deel van de geslaagde aanroepen (4%, plus elke aanroep die langer dan 1 seconde duurt) wordt als prestatiegegeven verstuurd. Dit helpt DomainNameAPI problemen te vinden en op te lossen. Foutrapportage staat **standaard aan**.
 
-**Verstuurd (alleen indien ingeschakeld):**
+**Wat wordt verstuurd:**
 
-- foutcode en foutmelding
-- pad van het aangeroepen API-eindpunt en HTTP-methode
+- foutcode en -melding
+- pad van het aangeroepen endpoint en HTTP-methode
 - duur van de aanroep
-- module-, bibliotheek- en PHP-versie
-- reseller-ID (het DomainNameAPI-account waarmee de module verbinding maakt)
+- modulenaam, bibliotheekversie en PHP-versie
+- reseller-ID en domeinnaam
+- het publieke IP-adres van de server (opgevraagd via `api.ipify.org`)
+- het adres (URL) van de panelpagina die de aanroep veroorzaakte
+- de naam van het hostingaccount op de server
+- het API-verzoek en -antwoord, inclusief de contactgegevens van het domein; alleen inloggegevens worden gemaskeerd — EPP-/auth-codes, API-keys, wachtwoorden en tokens worden vervangen door `***`
 
-**Niet verstuurd:** inhoud van API-verzoeken of -antwoorden; contactgegevens van domeinhouders (naam, e-mail, telefoon, adres, identiteits-/fiscale nummers); domeinnamen; EPP-/auth-codes; API-sleutels; het adres van de panelpagina; de naam van het hostingaccount of bestandspaden op de server; het IP-adres van de server (er wordt geen IP-opzoeking gedaan).
+**Wat nooit wordt verstuurd:** EPP-/auth-codes, API-keys, wachtwoorden of tokens in leesbare vorm; functieargumenten in stacktraces.
 
-**Bewaring:** tijdelijk bewaard op de eigen server van DomainNameAPI en daarna automatisch verwijderd.
+**Waarom en hoe lang:** de gegevens worden alleen gebruikt voor gebruiksmeting en het vroegtijdig opsporen van problemen, en worden 30 dagen bewaard op de eigen Sentry-server van DomainNameAPI, waarna ze automatisch worden verwijderd.
 
-**In- en uitschakelen:** vink de instelling **Telemetrie & foutrapportage** aan of uit op het DomainNameAPI-instellingenscherm (**Products → Domains → Service Providers**) en sla op.
+**Uitschakelen:** zet de instelling **Telemetrie & foutrapportage** uit op het DomainNameAPI-instellingenscherm (**Products → Domains → Service Providers**) en sla op. Standaard staat deze aan.
 
 ## Importeren van domein TLD's
 

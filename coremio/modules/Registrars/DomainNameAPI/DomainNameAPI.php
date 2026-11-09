@@ -106,9 +106,9 @@ class DomainNameAPI extends \RegistrarModule
             $changed = true;
         }
 
-        // Telemetry is opt-in: an install that never saved the setting gets it written as off.
+        // Error reporting predates the setting: installs that never saw it keep it on.
         if (!array_key_exists('error-reporting', $this->config['settings'] ?? [])) {
-            $this->config['settings']['error-reporting'] = 0;
+            $this->config['settings']['error-reporting'] = 1;
             $changed = true;
         }
 
@@ -1044,9 +1044,6 @@ class DomainNameAPI extends \RegistrarModule
         }
 
         $client->setErrorReportingEnabled($this->dnaReportsErrors($this->config['settings'] ?? []));
-        // When switched on, reports carry only the error code and message, endpoint, timing,
-        // versions and reseller ID: no customer data, domain, panel address, account or server IP.
-        $client->setTelemetryMinimal(true);
 
         return $client;
     }
@@ -1440,11 +1437,11 @@ class DomainNameAPI extends \RegistrarModule
     }
 
     /**
-     * Telemetry runs only when the administrator switched it on (off by default).
+     * Error reporting (telemetry) is on unless the setting was switched off.
      */
     private function dnaReportsErrors(array $settings): bool
     {
-        return !empty($settings['error-reporting']);
+        return !array_key_exists('error-reporting', $settings) || !empty($settings['error-reporting']);
     }
 
     /**

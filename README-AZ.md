@@ -59,21 +59,25 @@ WiseCP-nin keçid sihirbazı bu modulun parametrlərini 5-ə köçürmür. Keçi
 
 ## Xəta hesabatları (telemetriya)
 
-Modul xəta hesabatlarını DomainNameAPI-nin öz xəta izləmə sisteminə (Sentry, `sentry.atakdomain.com`) göndərə bilər: API çağırışı uğursuz olduqda və uğurlu çağırışların təsadüfi seçilmiş kiçik bir hissəsi üçün (4%, üstəlik 1 saniyədən uzun çəkən hər çağırış). Bu, DomainNameAPI-yə istifadəni ölçməyə və problemləri erkən tapmağa kömək edir. Bu funksiya **standart olaraq söndürülüb** və yalnız administrator onu aktivləşdirdikdə işləyir.
+API çağırışı uğursuz olduqda modul DomainNameAPI-nin öz xəta izləmə sisteminə (Sentry, `sentry.atakdomain.com`) xəta hesabatı göndərir. Uğurlu çağırışların təsadüfi seçilmiş kiçik bir hissəsi (4%, üstəlik 1 saniyədən uzun çəkən hər çağırış) performans qeydi kimi göndərilir. Bu, DomainNameAPI-yə problemləri tapıb düzəltməyə kömək edir. Xəta hesabatları **standart olaraq aktivdir**.
 
-**Göndərilənlər (yalnız aktiv olduqda):**
+**Göndərilənlər:**
 
 - xəta kodu və mesajı
-- çağırılan API son nöqtəsinin yolu və HTTP metodu
+- çağırılan endpoint yolu və HTTP metodu
 - çağırışın müddəti
-- modul, kitabxana və PHP versiyası
-- reseller ID (modulun qoşulduğu DomainNameAPI hesabı)
+- modulun adı, kitabxananın versiyası və PHP versiyası
+- reseller ID və domen adı
+- serverin ictimai (public) IP ünvanı (`api.ipify.org` vasitəsilə müəyyən edilir)
+- çağırışı başladan panel səhifəsinin ünvanı (URL)
+- serverdəki hosting hesabının adı
+- API sorğusu və cavabı, domenin əlaqə məlumatları daxil olmaqla; yalnız giriş məlumatları maskalanır — EPP/auth kodları, API açarları, parollar və tokenlər `***` ilə əvəz olunur
 
-**Göndərilməyənlər:** API sorğusunun və ya cavabının məzmunu; domen sahiblərinin əlaqə məlumatları (ad, e-poçt, telefon, ünvan, şəxsiyyət/vergi nömrələri); domen adları; EPP/auth kodları; API açarları; panel səhifəsinin ünvanı; hostinq hesabının adı və ya serverdəki fayl yolları; serverin IP ünvanı (heç bir IP sorğusu edilmir).
+**Heç vaxt göndərilməyənlər:** oxunaqlı formada EPP/auth kodları, API açarları, parollar və ya tokenlər; stack trace-lərdəki funksiya çağırışı arqumentləri.
 
-**Saxlanma:** məlumatlar DomainNameAPI-nin öz serverində müvəqqəti saxlanılır, sonra avtomatik olaraq silinir.
+**Niyə və nə qədər müddətə:** məlumatlar yalnız istifadənin ölçülməsi və problemlərin erkən diaqnostikası üçün istifadə olunur, DomainNameAPI-nin öz Sentry serverində 30 gün saxlanılır, sonra avtomatik olaraq silinir.
 
-**Necə aktivləşdirmək/söndürmək olar:** DomainNameAPI ayarlar ekranında (**Products → Domains → Service Providers**) **Telemetry & Error Reporting** ayarını işarələyin və ya işarəni götürün və yadda saxlayın.
+**Necə söndürmək olar:** DomainNameAPI ayarlar ekranında (**Products → Domains → Service Providers**) **Telemetry & Error Reporting** ayarını söndürüb yadda saxlayın. Standart olaraq aktivdir.
 
 ## Alan TLD-lərini İçəri Aktarma
 
