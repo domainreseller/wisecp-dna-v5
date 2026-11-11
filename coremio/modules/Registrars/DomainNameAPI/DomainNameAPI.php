@@ -14,13 +14,13 @@ use Exception;
  * The WISECP 3.x module lives in github.com/domainreseller/wisecp-dna.
  *
  * @package    coremio/modules/Registrars/DomainNameAPI
- * @version    4.0.5
+ * @version    4.0.6
  * @license    MIT License https://opensource.org/licenses/MIT
  * @maintainer Bünyamin AKÇAY<bunyamin@bunyam.in>
  */
 class DomainNameAPI extends \RegistrarModule
 {
-    const VERSION = '4.0.5';
+    const VERSION = '4.0.6';
 
     /**
      * Zone record types the gateway can store.
