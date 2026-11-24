@@ -1043,6 +1043,7 @@ class DomainNameAPI extends \RegistrarModule
             throw new Exception($e->getMessage());
         }
 
+        if (method_exists($client, 'setClientInfo')) { $client->setClientInfo('wisecp5', self::VERSION); }
         $client->setErrorReportingEnabled($this->dnaReportsErrors($this->config['settings'] ?? []));
 
         return $client;
